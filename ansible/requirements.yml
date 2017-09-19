@@ -1,0 +1,4 @@
+---
+- src: SimpliField.node
+- src: wtanaka.mysql
+- src: manala.npm

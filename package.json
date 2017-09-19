@@ -1,0 +1,25 @@
+{
+  "name": "player_api",
+  "version": "1.0.0",
+  "description": "API for game developers to update player data",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfroberts2/player_api.git"
+  },
+  "author": "David Roberts",
+  "scripts": {
+    "start": "node app.js",
+    "test": "istanbul cover _mocha -- exports -R dot"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "express": "^4.15.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.3",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.8.4",
+    "sinon": "^3.3.0"
+  }
+}

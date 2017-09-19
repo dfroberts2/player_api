@@ -1,0 +1,22 @@
+- name: Provision Player API
+  hosts: webserver
+  remote_user: root
+  roles:
+    - role: SimpliField.node
+      nodejs_version: 6.x
+    - role: manala.npm
+  tasks:
+    - name: Create player-api group
+      group:
+        name: player-api
+        state: present
+    - name: Create player-api user
+      user:
+        name: player-api
+        state: present
+        group: player-api
+    - name: Install yarn
+      npm:
+        name: "yarn"
+        version: "1.0.2"
+        global: yes

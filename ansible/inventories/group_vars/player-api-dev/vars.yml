@@ -1,0 +1,3 @@
+---
+mysql_user: "player_api"
+mysql_password: "player_api"

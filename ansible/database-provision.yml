@@ -1,0 +1,34 @@
+- name: Provision Player API
+  hosts: database
+  remote_user: root
+  roles:
+    - role: wtanaka.mysql
+  tasks:
+    - name: Create API database
+      mysql_db:
+        name: "{{api_db_name}}"
+        state: present
+    - name: Create API database user
+      mysql_user:
+        name: "{{mysql_user}}"
+        password: "{{mysql_password}}"
+        priv: '*.*:ALL'
+        state: present
+    - name: Add tmp directory
+      file:
+        path: "~/tmp"
+        state: directory
+    - name: Copy database scripts
+      copy:
+        src: database/{{item}}
+        dest: ~/tmp/{{item}}
+      with_items:
+        - 'create.sql'
+        - 'seed.sql'
+    - name: Run Database Scripts
+      shell: "mysql -u {{mysql_user}} -p{{mysql_password}} -D {{api_db_name}} < ~/tmp/{{item}}"
+      with_items:
+        - 'create.sql'
+        - 'seed.sql'
+    - name: Clean tmp directory
+      file: path="~/tmp" state=absent
